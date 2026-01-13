@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+        <div class="globe globe-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-bolt"></i>
+                <span>SaveVideoOnline</span>
+            </div>
+            <h1>Descarga Sin Límites</h1>
+            <p>YouTube · Instagram · TikTok · X (twitter)</p>
+        </header>
+
+        <main class="card glass">
+            <div class="input-group">
+                <i class="fa-solid fa-link input-icon"></i>
+                <input type="text" id="urlInput" placeholder="Pega el enlace del video aquí..." autocomplete="off">
+                <button id="searchBtn" class="btn-primary">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+            </div>
+
+            <div id="loading" class="hidden">
+                <div class="loader"></div>
+                <p>Analizando enlace...</p>
+            </div>
+
+            <div id="error" class="hidden message error">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span id="errorText">Error message here</span>
+            </div>
+
+            <div id="result" class="hidden result-container">
+                <div class="thumbnail-wrapper">
+                    <img id="thumbnail" src="" alt="Video Thumbnail">
+                </div>
+                <div class="info-wrapper">
+                    <h2 id="videoTitle">Video Title</h2>
+                    <div class="meta">
+                        <span id="videoDuration"><i class="fa-regular fa-clock"></i> 00:00</span>
+                        <span id="platformTag" class="platform-tag">YouTube</span>
+                    </div>
+
+                    <div class="options">
+                        <label class="radio-option">
+                            <input type="radio" name="format" value="video" checked>
+                            <span class="box">
+                                <i class="fa-solid fa-video"></i>
+                                <span>Video (MP4)</span>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="format" value="audio">
+                            <span class="box">
+                                <i class="fa-solid fa-music"></i>
+                                <span>Audio (MP3)</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div id="qualityContainer" class="quality-select-wrapper">
+                        <label for="qualitySelect">Calidad</label>
+                        <select id="qualitySelect" class="quality-dropdown">
+                            <option value="best">Mejor Disponible</option>
+                            <option value="1080p">1080p (Full HD)</option>
+                            <option value="720p">720p (HD)</option>
+                            <option value="480p">480p</option>
+                        </select>
+                    </div>
+
+                    <button id="downloadBtn" class="btn-download">
+                        <i class="fa-solid fa-cloud-arrow-down"></i> Descargar Ahora
+                    </button>
+                    <div id="downloadStatus" class="hidden download-status">
+                        <div class="status-content">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            <div class="status-text">
+                                <p id="statusMessage">Preparando descarga...</p>
+                                <p id="statusDetail" class="status-detail">Esto puede tardar un momento para videos
+                                    grandes</p>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made by <a href="https://github.com/OmarVillamizar" target="_blank"
+                    rel="noopener noreferrer">OmarVillamizar</a></p>
+            <p class="sub-credit">Created with Antigravity</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
