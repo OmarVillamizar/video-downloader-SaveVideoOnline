@@ -1,0 +1,32 @@
+# Virtual Environment
+venv/
+env/
+.env
+
+# Python compilation
+__pycache__/
+*.py[cod]
+
+# Distribution / Packaging
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Local data and binaries
+downloads/
+bin/
+ffmpeg-*.zip
+
+# IDEs
+.vscode/
+.idea/
+*.swp

@@ -45,12 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
         hideError();
         resultDiv.classList.add('hidden');
 
+        // Create abort controller for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+
         try {
             const response = await fetch('/api/info', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url })
+                body: JSON.stringify({ url }),
+                signal: controller.signal
             });
+
+            clearTimeout(timeoutId);
 
             const data = await response.json();
 
@@ -60,7 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             displayResult(data);
         } catch (err) {
-            showError(err.message);
+            clearTimeout(timeoutId);
+            if (err.name === 'AbortError') {
+                showError('La solicitud tardó demasiado. Intenta de nuevo o verifica el enlace.');
+            } else {
+                showError(err.message);
+            }
         } finally {
             showLoading(false);
         }
